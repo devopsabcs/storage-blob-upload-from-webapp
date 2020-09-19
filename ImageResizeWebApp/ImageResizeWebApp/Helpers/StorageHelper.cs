@@ -74,8 +74,9 @@ namespace ImageResizeWebApp.Helpers
                 {
                     Resource = "c",
                     BlobContainerName = _storageConfig.ThumbnailContainer,
-                    StartsOn = DateTimeOffset.UtcNow.AddMinutes(-5),
-                    ExpiresOn = DateTimeOffset.UtcNow.AddHours(1)
+                    //ensure doesn't expire due to Daylight Savings Time
+                    StartsOn = DateTimeOffset.UtcNow.AddMinutes(-65),
+                    ExpiresOn = DateTimeOffset.UtcNow.AddHours(2)
                 };
 
                 sas.SetPermissions(BlobContainerSasPermissions.All);
